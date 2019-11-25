@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Home Page</title>
+        <title>Sign Up Page</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -61,6 +61,37 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+			
+			
+input[type=text], {
+  width: 30%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
         </style>
     </head>
     <body>
@@ -80,19 +111,25 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Sud's Laravel Project
-                </div>
+			<h3>Sign up page</h3>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+					<div class="container">
+  						<form class ="" action="{{URL::to('/add_patient')}}" method="post">
+   							<label for="fullname">Full Name</label>
+    						<input type="text" id="fullname" name="fullname" placeholder="Enter Name" required="true">
+
+    						<label for="email">Email</label>
+    						<input type="text" id="email" name="email" placeholder="Enter Email" required="true">
+							
+							<label for="password">Password</label>
+							<input type="password" name="password" value="" required="true"><br><br>
+							
+							<input type="hidden" name="start_date_initial_contact" value="<?php echo date('Y-m-d'); ?>">
+							
+							<input type="hidden" name="_token" value="{{csrf_token()}}">
+	  						<button type="submit" name="register" value="true">Sign up</button>
+ 						</form>
+					</div>
             </div>
         </div>
     </body>
