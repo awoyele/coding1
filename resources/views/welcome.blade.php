@@ -45,7 +45,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 54px;
             }
 
             .links > a {
@@ -81,9 +81,17 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Sud's Laravel Project
-                </div>
-
+                    Sud's Laravel Coding Assignment - <p style="color: #ba243d; display:inline">Axxess</p> 
+                </div><br><br>
+				<p>Below are a few links that help to sign up a new patient, add a visit date to an existing patient and also to show a list of patients having their visit deadline. </p>
+				<div class="links">
+                    <a href="/signup" target="_blank">Sign Up</a>
+                    <a href="/visit" target="_blank">Add a Visit</a>
+					<a href="/upcoming" target="_blank">List of patients</a>
+					<a href="/process_missed_visits" target="_blank">Process Missed Visits</a>
+					<a href="/missed" target="_blank">Missed Patients - API</a>
+                </div><br>
+<!--
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
@@ -93,6 +101,7 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+-->
             </div>
         </div>
     </body>

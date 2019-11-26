@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Visit Page</title>
+        <title>Process Missed Visits Page</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -111,27 +111,7 @@ input[type=submit]:hover {
             @endif
 			
             <div class="content">
-			<h3>Add a visit page</h3>
-			@if (session('alert'))
-    		<div class="alert alert-success">
-        		{{ session('alert') }}
-    		</div>
-			@endif
-					<div class="container">
-  						<form class ="" action="{{URL::to('/add_visit_patient')}}" method="post">
-   							
-							
-							<label for="pid">Patient ID</label>
-    						<input type="text" id="pid" name="pid" placeholder="Enter patient id" required="true">
-							
-							<input type="date" name="visit_date" value="" required="true"><br><br>
-							
-							<input type="hidden" name="_token" value="{{csrf_token()}}">
-	  						
-							<button type="submit" name="add_visit" value="true">Add a visit</button>
- 						</form>
-					</div>
-            </div>
-        </div>
+			 Successfully updated the follow up field of the patients!!!
+       		</div>
     </body>
 </html>

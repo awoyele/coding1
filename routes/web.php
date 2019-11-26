@@ -11,17 +11,14 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//	return view('signup');
-//});
-
-
 Route::view('/', "welcome");
 Route::view('signup', "signup");
 Route::view('visit', "visit");
-Route::view('upcoming', "upcoming");
+Route::view('/process_missed_visits', "process_missed_visits");
 
+Route::resource('missed/','Missed');
+
+Route::get('/upcoming', "Upcoming@get_patients");
 
 Route::post('add_patient', "Users@add_patient");
 Route::post('add_visit_patient', "Visits@add_visit_patient");

@@ -111,7 +111,7 @@ input[type=submit]:hover {
             @endif
 
             <div class="content">
-			<h3>Sign up page</h3>
+			<h3>Please enter the following details:</h3>
 
 					<div class="container">
   						<form class ="" action="{{URL::to('/add_patient')}}" method="post">
@@ -124,8 +124,73 @@ input[type=submit]:hover {
 							<label for="password">Password</label>
 							<input type="password" name="password" value="" required="true"><br><br>
 							
-							<input type="hidden" name="start_date_initial_contact" value="<?php echo date('Y-m-d'); ?>">
+							<label for="birthday">Date Of Birth:</label>
+							<select name="month" onChange="changeDate(this.options[selectedIndex].value);" required="true">
+								<option value="">Month</option>
+								<option value="01">January</option>
+								<option value="02">February</option>
+								<option value="03">March</option>
+								<option value="04">April</option>
+								<option value="05">May</option>
+								<option value="06">June</option>
+								<option value="07">July</option>
+								<option value="08">August</option>
+								<option value="09">September</option>
+								<option value="10">October</option>
+								<option value="11">November</option>
+								<option value="12">December</option>
+							</select>
+							<select name="day" id="day" required="true">
+								<option value="">Day</option>
+							</select>
+							<select name="year" id="year" required="true">
+								<option value="">Year</option>
+							</select>
+							<script type="text/javascript">
+								function changeDate(i){
+									var e = document.getElementById('day');
+									while(e.length>0)
+									e.remove(e.length-1);
+									var j=-1;
+									if(i=="")
+										k='';
+									else if(i==2)
+										k=28;
+									else if(i==4||i==6||i==9||i==11)
+										k=30;
+									else
+										k=31;
+									while(j++<k){
+										var s=document.createElement('option');
+										var e=document.getElementById('day');
+										if(j==0){
+											s.text="Day";
+											s.value="na";
+											try{
+												e.add(s,null);}
+											catch(ex){
+												e.add(s);}}
+										else{
+											s.text=j;
+											s.value=j;
+											try{
+												e.add(s,null);}
+											catch(ex){
+												e.add(s);}}}}
+										y = '<?php echo date('Y', strtotime('+1 year')) ?>';
+									while (y-->1940){
+										var s = document.createElement('option');
+										var e = document.getElementById('year');
+										s.text=y;
+										s.value=y;
+										try{
+											e.add(s,null);}
+										catch(ex){
+											e.add(s);}} 
+							</script>
 							
+							<input type="hidden" name="start_date_initial_contact" value="<?php echo date('Y-m-d'); ?>">
+							<br><br><br><br>
 							<input type="hidden" name="_token" value="{{csrf_token()}}">
 	  						<button type="submit" name="register" value="true">Sign up</button>
  						</form>

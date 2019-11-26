@@ -16,8 +16,10 @@ class Visits extends Controller
     public function add_visit_patient(request $add_visit_details){
 		
 		
+		$patient_id = $user_post->input('pid');
+		$visit_date = $user_post->input('visit_date');
 		$update_visit = DB::table('users')->where('id',$patient_id)->update(array(
-                                 'visit_date'=>$visited_timestamp,
+                                 'visit_date'=>$visit_date,
 		));
 		if(!$update_visit){
 			return redirect()->back()->with('alert', 'Please enter the details correctly!');

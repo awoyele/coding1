@@ -11,16 +11,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 
-class Visits extends Controller
+class Upcoming extends Controller
 {
-    public function add_visit_patient(request $add_visit_details){
+    public function get_patients(){
 		
+		$today_date = date('Y-m-d');
+		$today_date_plus_4_weeks = date('Y-m-d', strtotime($today_date. ' + 28 days'));
 		
-		$update_visit = DB::table('users')->where('id',$patient_id)->update(array(
-                                 'visit_date'=>$visited_timestamp,
-		));
-		if(!$update_visit){
-			return redirect()->back()->with('alert', 'Please enter the details correctly!');
-		}
+		$upcoming_patients_list = DB::table('users')
+									->select('id')
+                   					->where('dead_line', '>=', $today_date)
+									->where('dead_line', '<=', $today_date_plus_4_weeks)
+									->get();
+		
+		return view('upcoming')->with('upcoming_patients_list', $upcoming_patients_list);
+		
 	}
 }

@@ -111,11 +111,11 @@ input[type=submit]:hover {
             @endif
 			
             <div class="content">
-			<h3>Upcoming page</h3>
+			<h3>List of patients</h3>
 					<div class="container">
-  						<?php $users=array('name' => 'jp'); foreach ($users as $user) {
-    						print_r($users);
-						}?>
+  						@foreach($upcoming_patients_list as $patient)
+							 {{$patient->id}}  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; {{$patient->name}} &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; {{$patient->dead_line}} <br> <br>
+						@endforeach
 					</div>
             </div>
         </div>
