@@ -17,6 +17,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password',
+        "birth_date","start_date","dead_line","missed_visit","visit_date","follow_up"
+        //columns in this field are mass assignable.. i.e they can be added by array
+    ];
+    
+    protected $dates = [
+        "birth_date","start_date","dead_line","visit_date",//"follow_up",
     ];
 
     /**

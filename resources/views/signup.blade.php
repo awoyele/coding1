@@ -111,6 +111,15 @@ input[type=submit]:hover {
             @endif
 
             <div class="content">
+				@if ($errors->any())
+					<div class="alert alert-danger">
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
 			<h3>Please enter the following details:</h3>
 
 					<div class="container">

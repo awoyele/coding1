@@ -116,14 +116,31 @@ input[type=submit]:hover {
     		<div class="alert alert-success">
         		{{ session('alert') }}
     		</div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 			@endif
 					<div class="container">
   						<form class ="" action="{{URL::to('/add_visit_patient')}}" method="post">
    							
 							
-							<label for="pid">Patient ID</label>
-    						<input type="text" id="pid" name="pid" placeholder="Enter patient id" required="true">
-							
+							{{--<label for="pids">Patient ID</label>--}}
+    						{{--<input type="text" id="pids" name="pid" placeholder="Enter patient id" required="true">--}}
+
+                            <label for="pid">Patient </label>
+                            <select name="pid" id="pid">
+                                <option>Select Patient</option>
+                                @foreach(\App\User::all() as $user)
+                                    <option value="{{$user->id}}"> {{ $user->name }}</option>
+                                @endforeach
+                            </select>
+
 							<input type="date" name="visit_date" value="" required="true"><br><br>
 							
 							<input type="hidden" name="_token" value="{{csrf_token()}}">

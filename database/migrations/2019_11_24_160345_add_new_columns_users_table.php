@@ -14,12 +14,12 @@ class AddNewColumnsUsersTable extends Migration
     public function up()
     {
 		Schema::table('users', function($table) {
-		$table->timestamp('birth_date');
-		$table->timestamp('start_date');
-		$table->timestamp('dead_line');
-		$table->string('missed_visit');
-        $table->timestamp('visit_date');
-		$table->string('follow_up');
+            $table->string('birth_date')->nullable();
+            $table->string('start_date')->nullable();
+            $table->string('dead_line')->nullable();
+            $table->string('missed_visit')->nullable();
+            $table->string('visit_date')->nullable();
+            $table->string('follow_up')->nullable();
     	});
     }
 

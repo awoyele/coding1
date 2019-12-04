@@ -113,9 +113,13 @@ input[type=submit]:hover {
             <div class="content">
 			<h3>List of patients</h3>
 					<div class="container">
-  						@foreach($upcoming_patients_list as $patient)
-							 {{$patient->id}}  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; {{$patient->name}} &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; {{$patient->dead_line}} <br> <br>
-						@endforeach
+                        @if($upcoming_patients_list->isEmpty())
+                            NO UPCOMING DEADLINES
+                        @else
+                            @foreach($upcoming_patients_list as $patient)
+                                 {{$patient->id}}  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; {{$patient->name}} &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; {{$patient->dead_line->toDayDateTimeString()}} <br> <br>
+                            @endforeach
+                        @endif
 					</div>
             </div>
         </div>

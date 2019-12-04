@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -18,13 +19,12 @@ class Upcoming extends Controller
 		$today_date = date('Y-m-d');
 		$today_date_plus_4_weeks = date('Y-m-d', strtotime($today_date. ' + 28 days'));
 		
-		$upcoming_patients_list = DB::table('users')
-									->select('id')
-                   					->where('dead_line', '>=', $today_date)
-									->where('dead_line', '<=', $today_date_plus_4_weeks)
-									->get();
+		$deadline = now()->addWeeks(4);
 		
-		return view('upcoming')->with('upcoming_patients_list', $upcoming_patients_list);
+		$upcoming_deadlines = User::where("dead_line","<=",$deadline)->where("dead_line",">=",today())->get();
+		
+		
+		return view('upcoming')->with('upcoming_patients_list', $upcoming_deadlines);
 		
 	}
 }

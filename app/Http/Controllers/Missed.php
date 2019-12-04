@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Missed_visits;
 
@@ -14,23 +15,16 @@ class Missed extends Controller
      */
     public function index()
     {
-        //
-		#$missed_patients = Missed_visits::all();
+        $this->makeMissed();
+        $missed_patients = User::where("follow_up","missed")->get();
 		
-		$missed_patients = Missed_visits::select('id,name,start_date,deadline')
-						   ->where('follow_up', 'missed');
-		
-		echo $$missed_patients;
+		return response($missed_patients, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function makeMissed(){
+        User::where("dead_line","<=", now())->whereNull("follow_up")
+            ->whereNull("visit_date")->update(["follow_up"=>"missed"]);
+        return true;
     }
 
     /**

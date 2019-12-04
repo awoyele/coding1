@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -28,11 +30,21 @@ class Users extends Controller
 		$dead_line_date = date('Y-m-d', strtotime($start_date. ' + 90 days'));
 		$this->validate(request(), [
             'fullname' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'password' => 'required'
         ]);
 		
-		
-		DB::insert('insert into users(id,name,email,password,birth_date,start_date,dead_line) values(?,?,?,?,?,?,?)',[null,$fullname,$email,$password,$birthday,$start_date,$dead_line_date]);
+		//using the model lets you save a created_at && updated_at date
+		$user = User::create([
+		    "name" => $user_post->fullname,
+            'email' => $user_post->email,
+            "password" => bcrypt($user_post->password),//password are always hashed!! not just encrypted!!
+            "birth_date" => Carbon::parse($birthday), //Carbon is used a lot for time manipulation
+            "start_date" => now(),//now is a global helper function, today() is another one == Carbon::now()
+            "deadline" => Carbon::parse($birthday)->addDays(90)
+            ]);
+//		DB::insert('insert into users(id,name,email,password,birth_date,start_date,dead_line) values(?,?,?,?,?,?,?)',[null,$fullname,$email,$password,$birthday,$start_date,$dead_line_date]);
+        
+        return $user; // return to home page will be better.. return url('/')
 	}
 }
